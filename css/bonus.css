@@ -1,0 +1,375 @@
+/* ==========================================================================
+   EXCEL DASHBOARD INSPIRATION WALL — Level 5 BONUS
+   Pinned-paper / handwritten inspiration-wall visual language.
+   Additive: only loaded on the bonus view.
+   ========================================================================== */
+
+/* Keep scrolling (main wall + newspaper) but hide the scrollbar visually */
+.content{ scrollbar-width:thin; scrollbar-color:transparent transparent; }
+.content::-webkit-scrollbar{ width:0; height:0; background:transparent; }
+.content::-webkit-scrollbar-thumb{ background:transparent; }
+.dw-news{ scrollbar-width:thin; scrollbar-color:transparent transparent; }
+.dw-news::-webkit-scrollbar{ width:0; height:0; background:transparent; }
+.dw-news::-webkit-scrollbar-thumb{ background:transparent; }
+
+/* ===== STUDIO LAYOUT: newspaper panel (left) + pinned wall (right) ===== */
+.dw-studio{
+  display:grid;
+  grid-template-columns:minmax(280px, 34fr) minmax(0, 66fr);
+  gap:14px; align-items:start;
+  width:100%; max-width:none; margin:0; padding:0; box-sizing:border-box;
+}
+.dw-studio > *{ min-width:0; box-sizing:border-box; }
+.dw-news{
+  --cream:#FBF6E9; --blue:#E8F0FB; --green:#E7F3EA; --yellow:#FBF4D8;
+  --lav:#EFEAFB; --peach:#FCEEE3;
+  width:100%; min-width:0; box-sizing:border-box;
+  position:sticky; top:14px;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 33px, rgba(60,50,30,.05) 33px 34px),
+    #fbf7ee;
+  border-radius:14px; padding:22px 22px 26px; color:#2c2615;
+  box-shadow:0 14px 30px rgba(60,45,20,.16);
+  max-height:calc(100vh - 28px); overflow:auto;
+  position:relative;
+}
+/* soft paper-cut (deckle) edge — the filter only displaces the background,
+   content stays crisp, so no hard "panel outline" line is visible */
+.dw-news::before{ content:""; position:absolute; inset:0; border-radius:14px; z-index:-1;
+  background:#fbf7ee; filter:url(#paperCut); box-shadow:0 6px 18px rgba(60,45,20,.18); }
+.dw-news-mast{ border-bottom:3px double rgba(60,45,20,.25); padding-bottom:14px; margin-bottom:16px;
+  position:sticky; top:0; z-index:5; background:#fbf7ee; }
+.dw-news-kicker{ font:700 10px/1 system-ui; letter-spacing:.18em; color:#7a3b12; margin-bottom:8px; }
+.dw-news-h{ margin:0; font:800 clamp(24px,2.4vw,34px)/1.02 "Trebuchet MS","Segoe UI",system-ui; color:#2c2415; letter-spacing:.01em; }
+.dw-news-sub{ font-size:13px; color:#5b4a2c; margin:10px 0 0; }
+.dw-news-quote{ font-style:italic; font-size:12.5px; color:#6b5a37; margin:8px 0 0; border-left:3px solid #2c6e49; padding-left:9px; }
+.dw-progress--news{ margin-top:14px; justify-content:flex-start; flex-wrap:wrap; gap:7px; }
+.dw-progress--news .dw-pill{ font-size:11px; padding:5px 10px; }
+.dw-progress--news .dw-pill b{ font-size:13px; }
+
+.dw-news-sec{ margin:0 0 18px; }
+.dw-pn-h{
+  font:800 16px/1 "Trebuchet MS",system-ui; letter-spacing:.05em; color:#7a3b12;
+  border-bottom:2px dashed rgba(0,0,0,.18); padding-bottom:7px; margin-bottom:11px;
+}
+.dw-pn-list{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:9px; }
+.dw-pn-list li{ font-size:12.5px; line-height:1.32; }
+.dw-pn-list b{ display:block; color:#1f6f47; font-size:11.5px; letter-spacing:.03em; }
+.dw-pn-list li span{ color:#4a4327; }
+.dw-formula{
+  margin-top:12px; text-align:center; font:700 13.5px/1 "Courier New",monospace;
+  color:#7a3b12; background:rgba(0,0,0,.05); border-radius:6px; padding:9px; letter-spacing:.03em;
+}
+.dw-learn-list{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px; }
+.dw-learn-list li{ display:flex; gap:8px; align-items:flex-start; font-size:13px; color:#3a3526; line-height:1.35; }
+.dw-learn-list li svg{ flex:0 0 auto; width:15px; height:15px; margin-top:2px; color:#2c6e49; }
+
+/* pin/bookmark shared bits (reused by AI Lab + Challenge inside the news panel) */
+.dw-pinnote{ position:relative; background:var(--paper,#FBF6E9); border-radius:6px; color:#2c2615;
+  box-shadow:0 10px 22px rgba(0,0,0,.18); border:1px solid rgba(0,0,0,.08); }
+.dw-pinnote .dw-pn-h{ border-bottom:2px dashed rgba(0,0,0,.18); }
+
+.dw-licence{ margin-top:18px; font-size:10.5px; color:#8a7a55; opacity:.85; line-height:1.5;
+  border-top:1px solid rgba(0,0,0,.1); padding-top:12px; }
+
+/* ---------- HERO ---------- */
+.dw-hero{ text-align:center; color:#3a2f1c; padding:18px 10px 6px; }
+.dw-kicker{
+  display:inline-block; font:700 12px/1 var(--font, "Segoe UI", system-ui); letter-spacing:.16em;
+  color:#5b4a2c; background:rgba(255,255,255,.5); border:1px solid rgba(0,0,0,.12);
+  padding:6px 12px; border-radius:999px; margin-bottom:14px;
+}
+.dw-title{
+  font:800 clamp(30px,5vw,56px)/1.02 "Trebuchet MS","Segoe UI",system-ui; margin:0;
+  color:#2c2415; letter-spacing:.01em; text-shadow:0 2px 0 rgba(255,255,255,.45);
+}
+.dw-sub{ font-size:16px; color:#4a3d24; margin:12px 0 4px; }
+.dw-sub b{ color:#1f7a4d; }
+.dw-note{ font-style:italic; color:#6b5a37; margin:6px 0 0; opacity:.9; }
+.dw-progress{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin:18px 0 6px; }
+.dw-pill{
+  background:rgba(255,255,255,.62); border:1px solid rgba(0,0,0,.12); border-radius:999px;
+  padding:7px 14px; font-size:12.5px; font-weight:600; color:#3a2f1c; letter-spacing:.04em;
+}
+.dw-pill b{ color:#1f7a4d; font-size:15px; margin-right:4px; }
+
+/* ---------- BOTTOM GALLERY STATUS STRIP (spec §13) ---------- */
+.dw-status{ margin-top:26px; padding-top:16px; border-top:1px dashed rgba(0,0,0,.22);
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+.dw-status-pills{ display:flex; flex-wrap:wrap; gap:10px; }
+.dw-sp{ background:rgba(255,255,255,.66); border:1px solid rgba(0,0,0,.12); border-radius:999px;
+  padding:7px 14px; font-size:12.5px; font-weight:700; color:#3a2f1c; letter-spacing:.03em; }
+.dw-status-tag{ font:italic 700 13px/1 "Trebuchet MS",system-ui; color:#7a3b12; }
+
+
+.dw-pinnote{
+  position:relative; margin:18px 0; padding:18px 20px 20px;
+  background:var(--paper,#FBF6E9); border-radius:6px; color:#2c2615;
+  box-shadow:0 12px 24px rgba(0,0,0,.2); transform:rotate(var(--rot,0deg));
+  border:1px solid rgba(0,0,0,.08);
+}
+.dw-pin{
+  position:absolute; top:-12px; left:50%; transform:translateX(-50%);
+  width:20px; height:20px; border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #ff8a7a, #c0392b 60%, #7d241a);
+  box-shadow:0 4px 6px rgba(0,0,0,.4), inset 0 -2px 3px rgba(0,0,0,.35);
+}
+.dw-pn-h{
+  font:800 19px/1 "Trebuchet MS",system-ui; letter-spacing:.06em; color:#7a3b12;
+  border-bottom:2px dashed rgba(0,0,0,.18); padding-bottom:8px; margin-bottom:12px;
+}
+.dw-pn-list{ margin:0; padding:0; list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:8px 22px; }
+.dw-pn-list li{ font-size:13.5px; line-height:1.4; }
+.dw-pn-list b{ display:block; color:#1f6f47; font-size:12.5px; letter-spacing:.03em; }
+.dw-pn-list li span{ color:#4a4327; }
+.dw-formula{
+  margin-top:14px; text-align:center; font:700 15px/1 "Courier New",monospace;
+  color:#7a3b12; background:rgba(0,0,0,.05); border-radius:6px; padding:10px;
+  letter-spacing:.04em;
+}
+.dw-ai-h{ color:#5b3a9c !important; }
+.dw-ai-sub{ font:800 16px/1 "Trebuchet MS",system-ui; color:#3a2a5c; margin:-4px 0 12px; letter-spacing:.04em; }
+.dw-ai-list{ margin:0 0 14px; padding-left:20px; columns:2; column-gap:26px; font-size:13px; line-height:1.5; color:#352a4a; }
+.dw-ai-list li{ break-inside:avoid; margin-bottom:5px; }
+.dw-ch-h{ color:#b5532a !important; }
+.dw-ch-lead{ font-size:13.5px; color:#5a3a26; margin:0 0 10px; }
+.dw-ch-list{ margin:0 0 14px; padding-left:20px; columns:2; column-gap:26px; font-size:13px; line-height:1.5; color:#4a2e1c; }
+.dw-ch-list li{ break-inside:avoid; margin-bottom:5px; }
+
+/* ---------- CONTROLS (filters + search) ---------- */
+.dw-controls{ display:flex; gap:14px; align-items:center; flex-wrap:wrap; justify-content:center;
+  margin:30px 0 8px; position:sticky; top:8px; z-index:5; }
+.dw-filters{ display:flex; gap:7px; flex-wrap:wrap; justify-content:center; }
+.dw-f{
+  font:700 12px/1 "Segoe UI",system-ui; letter-spacing:.06em; cursor:pointer;
+  background:rgba(255,255,255,.7); color:#4a3d24; border:1px solid rgba(0,0,0,.14);
+  padding:8px 12px; border-radius:999px; transition:.16s;
+}
+.dw-f:hover{ background:#fff; transform:translateY(-1px); }
+.dw-f.on{ background:#2c6e49; color:#fff; border-color:#2c6e49; box-shadow:0 4px 12px rgba(44,110,73,.4); }
+.dw-search{ display:flex; align-items:center; gap:7px; background:rgba(255,255,255,.85);
+  border:1px solid rgba(0,0,0,.16); border-radius:999px; padding:7px 13px; color:#5b4a2c; }
+.dw-search input{ border:0; background:transparent; outline:none; font-size:13.5px; width:210px; color:#2c2415; }
+
+/* ---------- PINNED DASHBOARD POSTER GALLERY ----------
+   Each card = a white/off-white printed "dashboard poster" pinned to a light gallery wall.
+   The dashboard screenshot is the hero. Category colour is ONLY an accent (pin, label, hover).
+   No coloured card backgrounds. */
+
+.dw-board{
+  columns:4; column-gap:18px; margin-top:20px; min-width:0;
+}
+.dw-empty{ column-span:all; text-align:center; color:#9a958c; padding:40px; font-style:italic; }
+
+/* poster card — white surface, light border, subtle depth, tiny rotation */
+.dw-paper{
+  position:relative; background:#FFFFFF; border:1px solid #E5E2DA; border-radius:10px;
+  padding:12px 12px 14px; box-shadow:0 6px 16px rgba(33,33,28,.10), 0 1px 2px rgba(33,33,28,.06);
+  transform:rotate(var(--rot,0deg)); transition:transform .22s ease, box-shadow .22s ease;
+  color:#292722; width:100%; min-width:0; box-sizing:border-box;
+  break-inside:avoid; -webkit-column-break-inside:avoid; display:inline-block; margin:0 0 18px;
+}
+.dw-paper:hover{ transform:rotate(0deg) translateY(-6px); box-shadow:0 16px 30px rgba(33,33,28,.16); z-index:3; }
+.dw-paper:hover .dw-img{ transform:scale(1.02); }
+.dw-paper.seen{ box-shadow:0 6px 16px rgba(33,33,28,.10), 0 0 0 2px rgba(31,122,77,.35); }
+
+/* physical push-pin at top — the single decorative colour on the card (category accent).
+   LIGHT tints only (no dark blue/green), so posters stay clean & light. */
+.dw-pin{
+  position:absolute; top:-11px; left:50%; transform:translateX(-50%);
+  width:15px; height:15px; border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #fff, #b9b2a6 60%, #8c8576);
+  box-shadow:0 3px 5px rgba(0,0,0,.3), inset 0 -2px 3px rgba(0,0,0,.25);
+}
+.dw-paper[data-pin="tl"] .dw-pin{ left:18px; transform:none; }
+.dw-paper[data-pin="tr"] .dw-pin{ left:auto; right:18px; transform:none; }
+/* category accent pins — light/medium tinted (NOT dark blue/green) */
+.dw-pin[data-cat="executive"]{ background:radial-gradient(circle at 35% 30%, #d6f3e2, #74c79a 60%, #4fae7e); }
+.dw-pin[data-cat="finance"]{ background:radial-gradient(circle at 35% 30%, #d6e6ff, #7ea8e6 60%, #5a8bd0); }
+.dw-pin[data-cat="sales"]{ background:radial-gradient(circle at 35% 30%, #ffe2c4, #f0a96a 60%, #d98a44); }
+.dw-pin[data-cat="marketing"]{ background:radial-gradient(circle at 35% 30%, #ffd6e8, #ec9ac2 60%, #d96fa3); }
+.dw-pin[data-cat="operations"]{ background:radial-gradient(circle at 35% 30%, #ffecc6, #ecc878 60%, #d9ad4f); }
+.dw-pin[data-cat="customer"]{ background:radial-gradient(circle at 35% 30%, #d2ecff, #8ec5e6 60%, #5fa6d0); }
+.dw-pin[data-cat="hr"]{ background:radial-gradient(circle at 35% 30%, #e6dcff, #b39be6 60%, #9474d0); }
+.dw-pin[data-cat="tech/saas"]{ background:radial-gradient(circle at 35% 30%, #d6dbff, #9aa6e6 60%, #7a86d0); }
+.dw-pin[data-cat="performance"]{ background:radial-gradient(circle at 35% 30%, #ffd6cc, #ec9a88 60%, #d9705a); }
+
+.dw-paper-top{ display:flex; align-items:center; justify-content:space-between; margin:2px 2px 10px; }
+.dw-num{ font:800 13px/1 "Courier New",monospace; color:#9a958c; }
+
+/* tiny category label — category colour is an accent only */
+.dw-cat{
+  font:700 10px/1 "Segoe UI",system-ui; letter-spacing:.09em; text-transform:uppercase;
+  padding:4px 8px; border-radius:6px; background:#F5F4EF; color:#77736B;
+}
+.dw-cat::before{ content:""; display:inline-block; width:7px; height:7px; border-radius:50%; margin-right:6px; vertical-align:0; background:#9a958c; }
+.dw-paper[data-cat="executive"] .dw-cat{ color:#1f7a4d; } .dw-paper[data-cat="executive"] .dw-cat::before{ background:#1f7a4d; }
+.dw-paper[data-cat="finance"]    .dw-cat{ color:#2f6fd0; } .dw-paper[data-cat="finance"]    .dw-cat::before{ background:#2f6fd0; }
+.dw-paper[data-cat="sales"]      .dw-cat{ color:#e07b2c; } .dw-paper[data-cat="sales"]      .dw-cat::before{ background:#e07b2c; }
+.dw-paper[data-cat="marketing"]  .dw-cat{ color:#d6458f; } .dw-paper[data-cat="marketing"]  .dw-cat::before{ background:#d6458f; }
+.dw-paper[data-cat="operations"] .dw-cat{ color:#c08a1f; } .dw-paper[data-cat="operations"] .dw-cat::before{ background:#c08a1f; }
+.dw-paper[data-cat="customer"]   .dw-cat{ color:#2f8fd0; } .dw-paper[data-cat="customer"]   .dw-cat::before{ background:#2f8fd0; }
+.dw-paper[data-cat="hr"]         .dw-cat{ color:#7b54c7; } .dw-paper[data-cat="hr"]         .dw-cat::before{ background:#7b54c7; }
+.dw-paper[data-cat="tech/saas"]  .dw-cat{ color:#4f5fd0; } .dw-paper[data-cat="tech/saas"]  .dw-cat::before{ background:#4f5fd0; }
+.dw-paper[data-cat="performance"] .dw-cat{ color:#c0392b; } .dw-paper[data-cat="performance"] .dw-cat::before{ background:#c0392b; }
+
+/* preview frame — dashboard fills the area (stretched, edge-to-edge to cut card height).
+   object-fit:cover so the image stretches to fill; object-position:top keeps the
+   headline/KPI row visible. overflow:hidden keeps it inside the poster. */
+.dw-imgwrap{ position:relative; border-radius:8px; overflow:hidden; background:#FFFFFF; border:1px solid #E5E2DA; aspect-ratio:4/3; min-height:0; min-width:0; padding:0; box-sizing:border-box; }
+.dw-img{ width:100%; height:100%; max-width:100%; min-width:0; object-fit:contain; object-position:center center; display:block; background:#fff; transition:transform .25s ease; }
+.dw-sheet{ position:absolute; top:0; left:0; z-index:2; font:700 9.5px/1 system-ui; letter-spacing:.07em;
+  color:#fff; background:rgba(31,41,55,.82); padding:4px 8px; border-bottom-right-radius:6px; }
+.dw-imgmiss{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font:700 12px/1.3 system-ui; color:#9a6b2e; text-align:center; padding:10px; background:#f3e9d2; }
+.dw-seen{ position:absolute; top:8px; right:8px; font:700 9px/1 system-ui; letter-spacing:.06em;
+  background:rgba(255,255,255,.92); color:#1f7a4d; padding:4px 7px; border-radius:999px; border:1px solid rgba(31,122,77,.35); }
+.dw-updated{ position:absolute; right:8px; top:34px; z-index:3; font:800 9px/1 system-ui; letter-spacing:.07em;
+  color:#fff; background:#217346; padding:3px 8px; border-radius:999px; box-shadow:0 1px 3px rgba(33,115,70,.4); }
+.dw-updated--lg{ position:static; font-size:10px; padding:3px 9px; vertical-align:middle; }
+
+.dw-paper-body{ padding:12px 2px 0; }
+.dw-title-sm{ margin:0; font:800 16px/1.18 "Trebuchet MS",system-ui; color:#292722; letter-spacing:.01em; }
+.dw-learn{ margin:6px 0 10px; font-style:italic; font-size:12.5px; color:#77736B; line-height:1.4; }
+.dw-tag{ display:none; } /* superseded by the category label above */
+
+/* compact premium actions */
+.dw-actions{ display:flex; gap:8px; margin-top:4px; }
+.dw-btn{ flex:1; cursor:pointer; font:700 11.5px/1 system-ui; letter-spacing:.05em;
+  border:1px solid #E5E2DA; border-radius:7px; padding:9px 8px; background:#fff; color:#292722; transition:.15s; }
+.dw-explore{ border-color:rgba(31,122,77,.4); color:#1f7a4d; }
+.dw-explore:hover{ background:#1f7a4d; color:#fff; border-color:#1f7a4d; }
+.dw-dl{ color:#3a3a33; }
+.dw-dl:hover{ background:#F5F4EF; border-color:#c9c4ba; }
+.dw-btn.big{ padding:12px 18px; font-size:13px; }
+.dw-btn.ghost{ background:#fff; color:#292722; border:1px solid #E5E2DA; }
+.dw-btn.ghost:hover{ background:#F5F4EF; }
+
+/* bookmark star — small white circular control, upper-right */
+.dw-bm{ position:absolute; top:10px; right:10px; z-index:4; width:26px; height:26px;
+  border:1px solid #E5E2DA; border-radius:50%; background:rgba(255,255,255,.92); color:#caa14a; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,.14); transition:.15s; }
+.dw-bm svg{ width:14px; height:14px; }
+.dw-bm.on{ background:#f4c430; color:#5b3a00; border-color:#e0b020; }
+.dw-bm:hover{ transform:scale(1.1); }
+.dw-bm.big{ position:static; width:34px; height:34px; }
+.dw-bm.big svg{ width:18px; height:18px; }
+
+/* ---------- MODAL (study desk) — ONE two-column interface ----------
+   Mounted at <body> level by App after render(), so it floats above the whole
+   app (above the sticky header bar, z-index 60) and nothing can overlap it. */
+.dw-modal{ position:fixed; inset:0; z-index:9000; display:none; }
+.dw-modal.on{ display:block; }
+.dw-modal-scrim{ position:absolute; inset:0; background:rgba(20,14,6,.62); backdrop-filter:blur(2px); }
+.dw-modal-card{
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:min(1200px, calc(100vw - 40px)); max-height:calc(100vh - 60px); overflow:hidden;
+  background:#fff; border-radius:12px; padding:24px 26px 20px; box-shadow:0 30px 70px rgba(0,0,0,.5);
+  color:#23211a; animation:dwpop .2s ease; display:flex; flex-direction:column;
+}
+@keyframes dwpop{ from{ opacity:0; transform:translate(-50%,-46%) scale(.97);} to{ opacity:1; transform:translate(-50%,-50%) scale(1);} }
+.dw-modal-x{ position:absolute; top:12px; right:12px; width:32px; height:32px; border:0; border-radius:8px;
+  background:#f0ede6; color:#3a2f1c; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:4; }
+.dw-modal-x:hover{ background:#e2ddd1; }
+.dw-modal-pin{ position:absolute; top:-11px; left:34px; width:20px; height:20px; border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #ff8a7a, #c0392b 60%, #7d241a);
+  box-shadow:0 4px 6px rgba(0,0,0,.4); }
+.dw-modal-head{ display:flex; align-items:center; gap:14px; padding-right:40px; border-bottom:2px solid #eee; padding-bottom:14px; flex:0 0 auto; }
+.dw-modal-head .dw-num{ font-size:18px; }
+.dw-modal-head h2{ margin:0; font:800 24px/1.1 "Trebuchet MS",system-ui; color:#2c2415; }
+.dw-modal-head .dw-cat{ font-size:12px; color:#7a3b12; font-weight:700; letter-spacing:.06em; margin-top:3px; }
+.dw-modal-head .dw-bm{ position:static; }
+
+/* the single scrolling region of the modal body */
+.dw-modal-body{ flex:1 1 auto; min-height:0; overflow-y:auto; padding-top:16px; }
+.dw-modal-grid{ display:grid; grid-template-columns:minmax(0,60fr) minmax(320px,40fr); gap:20px; align-items:start; }
+.dw-studio{ display:grid; grid-template-columns:minmax(280px, 28fr) minmax(0, 72fr); gap:26px; align-items:start; }
+.dw-modal-left{ min-width:0; }
+.dw-modal-imgwrap{ position:relative; border:1px solid #e3ddd0; border-radius:8px; overflow:hidden; background:#f7f4ec; }
+.dw-modal-img{ width:100%; height:auto; max-height:60vh; object-fit:contain; display:block; background:#fff; }
+.dw-modal-right{ min-width:0; }
+.dw-sec{ margin-bottom:14px; }
+.dw-sec-h{ display:block; font:800 11px/1 system-ui; letter-spacing:.1em; color:#1f7a4d; margin-bottom:6px; }
+.dw-study{ margin:0; padding-left:18px; font-size:13.5px; color:#3a3526; line-height:1.5; }
+.dw-study b{ color:#7a3b12; }
+.dw-look{ margin:0; padding-left:18px; font-size:13.5px; color:#3a3526; line-height:1.5; }
+.dw-file{ font-size:12.5px; color:#6b5a37; word-break:break-all; }
+.dw-modal-nav{ display:flex; gap:10px; align-items:center; justify-content:space-between; margin-top:14px;
+  border-top:2px solid #eee; padding-top:14px; flex:0 0 auto; }
+.dw-modal-foot{ margin-top:10px; font-size:12px; color:#8a7a55; font-style:italic; text-align:center; flex:0 0 auto; }
+.dw-zoom-hint{ position:absolute; bottom:8px; right:8px; z-index:2; font:600 10px/1 system-ui;
+  color:#3a2f1c; background:rgba(255,255,255,.82); border:1px solid rgba(0,0,0,.12);
+  padding:5px 8px; border-radius:6px; pointer-events:none; }
+
+/* ---------- FULL-SIZE LIGHTBOX (spec §8) ---------- */
+.dw-lightbox{ position:fixed; inset:0; z-index:9100; display:flex; align-items:center; justify-content:center; }
+.dw-lightbox[hidden]{ display:none; }
+.dw-light-scrim{ position:absolute; inset:0; background:rgba(12,10,6,.86); backdrop-filter:blur(3px); }
+.dw-light-card{ position:relative; width:min(1100px, 96vw); height:min(94vh, 980px); display:flex; flex-direction:column;
+  background:#1d1a13; border-radius:12px; overflow:hidden; box-shadow:0 40px 90px rgba(0,0,0,.6); }
+.dw-light-bar{ flex:0 0 auto; display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:12px 14px; background:#262218; color:#f3ecdc; border-bottom:1px solid rgba(255,255,255,.08); }
+.dw-light-title{ font:800 16px/1.1 "Trebuchet MS",system-ui; color:#fff; display:flex; align-items:center; gap:10px; min-width:0; }
+.dw-light-src{ font:700 10px/1 system-ui; letter-spacing:.06em; color:#9a6b2e; background:rgba(255,255,255,.08); padding:4px 8px; border-radius:5px; white-space:nowrap; }
+.dw-light-tools{ display:flex; align-items:center; gap:6px; flex:0 0 auto; }
+.dw-lbtn{ height:32px; min-width:32px; padding:0 9px; border:0; border-radius:7px; cursor:pointer;
+  background:#3a3424; color:#f3ecdc; font:700 14px/1 system-ui; transition:.14s; }
+.dw-lbtn:hover{ background:#4a4230; }
+.dw-lbtn.dw-lclose{ background:#8a3322; }
+.dw-lbtn.dw-lclose:hover{ background:#a23c28; }
+.dw-light-zv{ font:700 12px/1 system-ui; color:#cdbfa3; min-width:42px; text-align:center; }
+.dw-light-stage{ flex:1; min-height:0; overflow:auto; display:flex; align-items:center; justify-content:center;
+  background:#11100b; padding:18px; }
+.dw-light-img{ max-width:100%; max-height:100%; object-fit:contain; transform-origin:center center;
+  background:#fff; box-shadow:0 10px 40px rgba(0,0,0,.5); transition:transform .12s ease; }
+.dw-light-foot{ flex:0 0 auto; text-align:center; padding:9px 14px; background:#262218; color:#b6a684;
+  font:600 12px/1.2 system-ui; border-top:1px solid rgba(255,255,255,.08); }
+
+.dw-confirm{ position:fixed; bottom:24px; left:50%; transform:translateX(-50%); z-index:80;
+  background:#1f7a4d; color:#fff; padding:11px 18px; border-radius:999px; font:600 13px/1 system-ui;
+  box-shadow:0 10px 24px rgba(0,0,0,.3); animation:dwconf .25s ease; }
+@keyframes dwconf{ from{ opacity:0; transform:translate(-50%,10px);} to{ opacity:1; transform:translate(-50%,0);} }
+
+.dw-wall-col{
+  --cream:#FCFBF7; --blue:#F2F8FE; --green:#F1FAF4; --yellow:#FEFCF2;
+  --lav:#F3E5F5; --peach:#FCE4EC;
+  min-width:0; width:100%; box-sizing:border-box; position:relative;
+  background:
+    radial-gradient(circle at 16% 10%, rgba(255,255,255,.7), transparent 40%),
+    radial-gradient(circle at 84% 30%, rgba(255,255,255,.5), transparent 46%),
+    repeating-linear-gradient(0deg, transparent 0 38px, rgba(0,0,0,.018) 38px 39px),
+    #F7F4EE;
+  border-radius:18px; padding:18px 18px 22px;
+}
+.dw-wall-col::before{ content:""; position:absolute; inset:0; border-radius:18px; z-index:-1;
+  background:#efe9df; box-shadow:0 8px 26px rgba(70,55,25,.12); }
+
+.dw-licence{ margin-top:18px; font-size:10.5px; color:#8a7a55; opacity:.85; line-height:1.5;
+  border-top:1px solid rgba(0,0,0,.1); padding-top:12px; }
+
+/* ---------- RESPONSIVE ---------- */
+/* gallery uses CSS multi-column masonry; column count drives card density */
+@media (max-width: 1200px){
+  .dw-studio{ grid-template-columns:minmax(260px, 30fr) minmax(0, 70fr); }  /* tablet ~30/70 */
+  .dw-board{ columns:3; }                                                   /* 3-up */
+}
+@media (max-width: 900px){
+  .dw-studio{ grid-template-columns:1fr; }                                /* mobile: stack */
+  .dw-news{ position:static; max-height:none; }
+  .dw-paper{ transform:rotate(0deg) !important; }                         /* readability on small screens */
+  .dw-pn-list,.dw-ai-list,.dw-ch-list{ columns:1; }
+  .dw-modal-grid{ grid-template-columns:minmax(0,55fr) minmax(0,45fr); }  /* tablet: still side-by-side */
+  .dw-board{ columns:2; }                                                  /* 2-up */
+}
+@media (max-width: 768px){
+  .dw-modal-grid{ grid-template-columns:1fr; }                            /* mobile: stack dashboard above info */
+}
+@media (max-width: 560px){
+  .dw-board{ columns:1; }                                                  /* 1-up */
+  .dw-search input{ width:150px; }
+  .dw-controls{ position:static; flex-direction:column; align-items:stretch; }
+}
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .dw-paper,.dw-img,.dw-modal-card,.dw-confirm{ transition:none !important; animation:none !important; }
+}

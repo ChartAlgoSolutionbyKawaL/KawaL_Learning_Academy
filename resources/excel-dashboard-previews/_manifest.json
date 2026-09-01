@@ -1,0 +1,128 @@
+{
+  "kpi-dashboard": {
+    "ok": true,
+    "sheet": "DASHBOARD",
+    "why": "exact",
+    "out": "resources\\excel-dashboard-previews\\kpi-dashboard.png"
+  },
+  "financial-dashboard": {
+    "ok": true,
+    "sheet": "Dashboard",
+    "why": "exact",
+    "out": "resources\\excel-dashboard-previews\\financial-dashboard.png"
+  },
+  "project-management-dashboard": {
+    "ok": true,
+    "sheet": "DASHBOARD",
+    "why": "exact",
+    "out": "resources\\excel-dashboard-previews\\project-management-dashboard.png"
+  },
+  "health-and-safety-dashboard": {
+    "ok": true,
+    "sheet": "Dashboard",
+    "why": "exact",
+    "out": "resources\\excel-dashboard-previews\\health-and-safety-dashboard.png"
+  },
+  "supply-chain-dashboard": {
+    "ok": true,
+    "sheet": "DASHBOARD",
+    "why": "exact",
+    "out": "resources\\excel-dashboard-previews\\supply-chain-dashboard.png"
+  },
+  "call-center-dashboard": {
+    "ok": true,
+    "sheet": "DASHBOARD",
+    "why": "exact",
+    "out": "resources\\excel-dashboard-previews\\call-center-dashboard.png"
+  },
+  "sales-dashboard": {
+    "ok": true,
+    "sheet": "DASHBOARD",
+    "why": "exact",
+    "out": "resources\\excel-dashboard-previews\\sales-dashboard.png"
+  },
+  "inventory-dashboard": {
+    "ok": true,
+    "sheet": "DASHBOARD",
+    "why": "exact",
+    "out": "resources\\excel-dashboard-previews\\inventory-dashboard.png"
+  },
+  "marketing-dashboard": {
+    "ok": true,
+    "sheet": "DASHBOARD",
+    "why": "exact",
+    "out": "resources\\excel-dashboard-previews\\marketing-dashboard.png"
+  },
+  "ceo-dashboard": {
+    "ok": true,
+    "sheet": "Dashboard",
+    "why": "exact",
+    "out": "resources\\excel-dashboard-previews\\ceo-dashboard.png"
+  },
+  "ecommerce-dashboard": {
+    "ok": true,
+    "sheet": "Dashboard",
+    "why": "exact",
+    "out": "resources\\excel-dashboard-previews\\ecommerce-dashboard.png"
+  },
+  "okr-dashboard": {
+    "ok": true,
+    "sheet": "Dashboard",
+    "why": "exact",
+    "out": "resources\\excel-dashboard-previews\\okr-dashboard.png"
+  },
+  "recruitment-dashboard": {
+    "ok": true,
+    "sheet": "Dashboard",
+    "why": "exact",
+    "out": "resources\\excel-dashboard-previews\\recruitment-dashboard.png"
+  },
+  "seo-dashboard": {
+    "ok": true,
+    "sheet": "Dashboard",
+    "why": "exact",
+    "out": "resources\\excel-dashboard-previews\\seo-dashboard.png"
+  },
+  "saas-dashboard": {
+    "ok": true,
+    "sheet": "Dashboard",
+    "why": "exact",
+    "out": "resources\\excel-dashboard-previews\\saas-dashboard.png"
+  },
+  "social-media-metrics-dashboard": {
+    "ok": true,
+    "sheet": "Dashboard",
+    "why": "exact",
+    "out": "resources\\excel-dashboard-previews\\social-media-metrics-dashboard.png"
+  },
+  "weekly-status-dashboard": {
+    "ok": true,
+    "sheet": "Dashboard",
+    "why": "exact",
+    "out": "resources\\excel-dashboard-previews\\weekly-status-dashboard.png"
+  },
+  "personal-budget-dashboard": {
+    "ok": true,
+    "sheet": "DASHBOARD",
+    "why": "exact",
+    "out": "resources\\excel-dashboard-previews\\personal-budget-dashboard.png"
+  },
+  "hr-dashboard": {
+    "ok": true,
+    "sheet": "DASHBOARD",
+    "why": "exact",
+    "out": "resources\\excel-dashboard-previews\\hr-dashboard.png"
+  },
+  "performance-dashboard": {
+    "ok": true,
+    "sheet": "DASHBOARD",
+    "why": "exact",
+    "out": "resources\\excel-dashboard-previews\\performance-dashboard.png"
+  },
+  "corporate-dashboard-infographic": {
+    "ok": true,
+    "sheet": "Dashboard",
+    "why": "exact",
+    "out": "resources\\excel-dashboard-previews\\corporate-dashboard-infographic.png"
+  }
+}
