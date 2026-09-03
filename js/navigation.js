@@ -22,6 +22,7 @@ const Nav = (() => {
       b.classList.toggle("on", b.dataset.mode === mode));
 
     nav.innerHTML = mode === "path" ? navPath() : navReference();
+    nav.scrollTop = 0;   /* ensure first level (L1) is always visible at top — prevents scroll offset clipping */
 
     const cp = LMS.courseProgress();
     foot.innerHTML = mode === "path"

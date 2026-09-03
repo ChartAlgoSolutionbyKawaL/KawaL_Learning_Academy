@@ -97,7 +97,7 @@ header{
   display:flex;align-items:center;gap:14px;padding:0 16px;
   background:var(--card);border-bottom:1px solid var(--line);box-shadow:var(--sh-1);
 }
-.hamburger{display:none}
+.icon-btn.hamburger{display:none}
 .brand{display:flex;align-items:center;gap:11px;cursor:pointer;min-width:0}
 .brand-mark{
   width:34px;height:34px;border-radius:9px;flex:0 0 34px;
@@ -384,7 +384,7 @@ aside{
 .lvl-emerald {--lc:var(--lv-emerald)}
 
 /* sidebar level section */
-.lvl{margin-bottom:7px;border:1px solid var(--line);border-left:3px solid var(--lc,var(--g-200));border-radius:var(--r-sm);background:var(--card);overflow:hidden;transition:.15s}
+.lvl{margin-bottom:7px;border:1px solid var(--line);border-left:3px solid var(--lc,var(--g-200));border-radius:var(--r-sm);background:var(--card);overflow:hidden;transition:.15s;scroll-margin-top:2px}
 .lvl.sel{border-color:var(--lc);border-left-color:var(--lc);box-shadow:0 0 0 3px color-mix(in srgb,var(--lc) 14%,transparent)}
 /* level header — now a single <button> so clicking anywhere on it toggles open/close */
 .lvl-hd{all:unset;width:100%;display:flex;align-items:center;gap:8px;padding:9px 10px;text-align:left;
@@ -558,6 +558,9 @@ body.nav-collapsed .bar-navtoggle svg{transform:rotate(180deg);transition:transf
   z-index:180;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .26s ease;
 }
 .drawer.open{transform:translateX(0)}
+@media(max-width:760px){
+  .drawer{transform:translateX(var(--vw))}
+}
 .drawer-hd{
   flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px;
   padding:13px 16px;border-bottom:1px solid var(--line);background:var(--g-700)
@@ -1612,8 +1615,8 @@ body.nav-collapsed .bar-navtoggle svg{transform:rotate(180deg);transition:transf
     position:fixed;left:0;top:var(--hdr);height:calc(var(--vh) - var(--hdr));
     transform:translateX(-100%);transition:transform .26s ease;box-shadow:var(--sh-3)
   }
-  body.nav-open aside{transform:translateX(0)}
-  .hamburger{display:grid}
+  body.nav-open aside:not(.drawer){transform:translateX(0)}
+  .icon-btn.hamburger{display:grid}
   .search-wrap{max-width:none;margin:0}
   .hdr-prog,.hdr-label{display:none}
 
@@ -1743,3 +1746,125 @@ body.nav-collapsed .bar-navtoggle svg{transform:rotate(180deg);transition:transf
 }
 @media print { * { transition:none!important; animation:none!important; } }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ==========================================================================
+   RESPONSIVE ENHANCEMENTS
+   Fixes for mobile/tablet: header wrapping, sidebar drawer, lesson viewer
+   scaling, card reflow, touch targets.
+   ========================================================================== */
+
+/* --- Hamburger visible on mobile (tablet+ already handled by existing @media(1024px)) --- */
+@media(max-width:760px){
+  .icon-btn.hamburger{display:grid !important}
+}
+
+/* --- Header wrapping on small screens --- */
+@media(max-width:760px){
+  header{flex-wrap:wrap;height:auto;min-height:var(--hdr)}
+  .bar{flex-wrap:wrap;gap:6px}
+  .crumb{max-width:100%;overflow:hidden;text-overflow:ellipsis}
+  .brand{flex:0 0 auto}
+  .brand-sep{display:none}
+  .search-wrap{flex:1 1 100% !important;max-width:calc(var(--vw) - 24px) !important;margin:8px 0;order:2}
+  .hdr-right{flex:1 1 100%;max-width:calc(var(--vw) - 24px);order:3;justify-content:flex-end;gap:4px}
+  .hdr-right .hdr-sep{display:none}
+  .hdr-link .hdr-label{display:none}
+  .hdr-link{width:34px;padding:0}
+  .pz{width:90px}
+  .pz-btn{width:26px;height:26px}
+  .pz-val{font-size:12px;padding:0 2px}
+  .user .un{display:none}
+}
+
+@media(max-width:520px){
+  .search-wrap input{height:36px;padding:0 34px;font-size:13px}
+  .pz{width:80px}
+}
+
+/* --- Sidebar drawer on mobile --- */
+@media(max-width:760px){
+  :root{--sidebar:250px}
+  aside:not(.drawer){
+    position:fixed;top:var(--hdr);left:0;width:var(--sidebar);
+    height:calc(var(--vh) - var(--hdr));overflow-y:auto;overflow-x:hidden;
+    background:var(--card);border-right:1px solid var(--line);
+    transform:translateX(-100%);transition:transform .26s ease;box-shadow:var(--sh-3);
+  }
+  body.nav-open aside:not(.drawer){transform:translateX(0)}
+  body.nav-open .content{margin-left:var(--sidebar) !important}
+  .content{margin-left:0 !important}
+  .bar{padding:0 14px}
+  .content{padding:14px;max-width:none}
+  .wrap{max-width:none;margin:0}
+}
+
+/* --- Dashboard grid reflow --- */
+@media(max-width:1024px){
+  .lvl-grid{grid-template-columns:repeat(3,1fr)}
+  .cards-grid,.hub-grid{grid-template-columns:repeat(2,1fr)}
+  .kpi-hero{max-width:none}
+}
+@media(max-width:768px){
+  .lvl-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){
+  .lvl-grid{grid-template-columns:1fr}
+  .cards-grid,.hub-grid{grid-template-columns:1fr}
+}
+
+/* --- Lesson viewer on mobile --- */
+@media(max-width:760px){
+  .bar{gap:8px;padding:0 14px}
+  .crumb{font-size:11px;gap:5px;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+  .content{padding:12px}
+  .content.full{padding:8px}
+  .topic-hd h1{font-size:20px}
+  .topic-bar{gap:4px;padding:6px 8px;flex-wrap:wrap}
+  .tb-btn{height:36px;padding:0 8px;font-size:11.5px;white-space:nowrap}
+  .tb-btn.tb-practice{height:38px;padding:0 10px;font-size:12px}
+  .pager-lbl{font-size:11px;min-width:60px}
+  .stage{padding:10px}
+  .stage img{max-width:100%;width:100%;height:auto;border-radius:6px}
+  .info-strip{font-size:13px;padding:8px 0}
+}
+
+/* --- Tiny screens: collapse toolbar button labels to icons only --- */
+@media(max-width:400px){
+  .tb-btn{padding:0 5px;min-width:32px}
+  .tb-btn .tb-lbl,.tb-btn .zoom-lbl{display:none}
+  .tb-btn.tb-practice .tb-lbl,.tb-btn.tb-practice .zoom-lbl{display:inline}
+  .pager-lbl .tb-lbl,.pager-lbl .zoom-lbl{display:inline}
+  .pager-lbl{font-size:10px;min-width:50px}
+}
+
+@media(max-width:480px){
+  header{gap:6px;padding:0 8px}
+  .bar{padding:0 8px}
+  .crumb{font-size:10px;gap:3px}
+  .hdr-link{width:30px}
+  .topic-hd h1{font-size:18px}
+  .topic-bar{gap:2px}
+  .tb-btn{font-size:9.5px;padding:0 5px;min-width:28px;height:34px}
+  .tb-btn.tb-practice{height:36px;padding:0 7px;font-size:10.5px}
+}
+
+/* --- Landscape mobile: compact toolbars --- */
+@media(max-width:760px) and (orientation:landscape){
+  .topic-bar{gap:2px;padding:4px 6px}
+  .tb-btn{height:30px;padding:0 5px;font-size:10px}
+  .tb-btn.tb-practice{padding:0 7px;font-size:10.5px}
+  .stage{padding:6px}
+}
+
+/* --- Modals: compact on tiny screens --- */
+@media(max-width:480px){
+  .drawer-body .practice .pr-guide{padding:8px}
+  .drawer-body .practice .pr-guide-card{padding:16px 16px;max-width:none;border-radius:12px}
+  .drawer-body .practice .pr-wb-name{font-size:11px;padding:5px 7px}
+  .drawer-body .practice .pr-scenario{padding:10px}
+}
+
+/* --- Practice workbook sheet name truncation --- */
+.pr-wb-name{
+  word-break:break-all;overflow-wrap:anywhere;
+}
